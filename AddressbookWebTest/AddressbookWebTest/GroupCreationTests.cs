@@ -42,19 +42,23 @@ namespace WebAddressbookTests
             Assert.AreEqual("", verificationErrors.ToString());
         }
 
+        
         [Test]
         public void GroupCreationTest()
         {
             OpenHomePage();
-            Login("admin","secret");
+            Login(new AccountData ("admin","secret"));
             GoToGroupsPage();
             InitNewGroupCreation();
-            FillGroupForm("TheBestGroup","header","footer");
+            GroupData group = new GroupData("BestGroup");
+            group.Header = "header";
+            group.Footer = "footer";
+            FillGroupForm(group);
             SubmitGroupCreation();
             ReturnToGroupsPage();
             Logout();
         }
-
+        new 
         private void Logout()
         {
             //Логаут из адресной книги
@@ -73,15 +77,15 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("submit")).Click();
         }
 
-        private void FillGroupForm(String name, String header, String footer)
+        private void FillGroupForm(GroupData group)
         {
             //Заполнение данных о новой группе
             driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys(name);
+            driver.FindElement(By.Name("group_name")).SendKeys(group.Name);
             driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys(header);
+            driver.FindElement(By.Name("group_header")).SendKeys(group.Header);
             driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys(footer);
+            driver.FindElement(By.Name("group_footer")).SendKeys(group.Footer);
         }
 
         private void InitNewGroupCreation()
@@ -96,13 +100,13 @@ namespace WebAddressbookTests
             driver.FindElement(By.LinkText("groups")).Click();
         }
 
-        private void Login(String username,String password)
+        private void Login(AccountData account)
         {
             //Авторизация
             driver.FindElement(By.Name("user")).Clear();
-            driver.FindElement(By.Name("user")).SendKeys(username);
+            driver.FindElement(By.Name("user")).SendKeys(account.Username);
             driver.FindElement(By.Name("pass")).Clear();
-            driver.FindElement(By.Name("pass")).SendKeys(password);
+            driver.FindElement(By.Name("pass")).SendKeys(account.Password);
             driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
         }
 
