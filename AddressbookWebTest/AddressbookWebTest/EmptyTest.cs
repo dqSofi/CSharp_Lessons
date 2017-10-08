@@ -4,10 +4,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace AddressbookWebTest
 {
     [TestClass]
-    public class UnitTest1
+    public class EmptyTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void EmptyTest()
         {
         }
     }
