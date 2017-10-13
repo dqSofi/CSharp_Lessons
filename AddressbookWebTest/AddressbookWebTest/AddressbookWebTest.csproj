@@ -62,9 +62,11 @@
     <Compile Include="ContactData.cs" />
     <Compile Include="GroupData.cs" />
     <Compile Include="EmptyTest.cs" />
+    <Compile Include="GroupRemovalTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GroupCreationTests.cs" />
     <Compile Include="ContactCreationTests.cs" />
+    <Compile Include="TestBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
