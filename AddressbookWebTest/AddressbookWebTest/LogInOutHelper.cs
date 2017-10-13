@@ -9,14 +9,12 @@ using OpenQA.Selenium.Support.UI;
 
 namespace WebAddressbookTests
 {
-    public class LogInOutHelper
+    public class LogInOutHelper : HelperBase
     {
-        private IWebDriver driver;
-
         public LogInOutHelper(IWebDriver driver)
+            : base(driver)
         {
-            this.driver = driver;
-        }
+        } 
 
         public void Login(AccountData account)
         {

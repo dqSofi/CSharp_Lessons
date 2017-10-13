@@ -65,7 +65,8 @@
     <Compile Include="EmptyTest.cs" />
     <Compile Include="GroupHelper.cs" />
     <Compile Include="GroupRemovalTest.cs" />
-    <Compile Include="LoginHelper.cs" />
+    <Compile Include="HelperBase.cs" />
+    <Compile Include="LogInOutHelper.cs" />
     <Compile Include="NavigationHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GroupCreationTests.cs" />
