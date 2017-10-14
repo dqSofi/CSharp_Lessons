@@ -16,6 +16,7 @@ namespace WebAddressbookTests
             newContact.Firstname = "Имя";
             newContact.Lastname = "Фамилия";
 
+            app.Navigator.AddNewContact();
             app.Contacts.Create(newContact);
             app.Auth.Logout();
         }
@@ -27,6 +28,7 @@ namespace WebAddressbookTests
             newContact.Firstname = "";
             newContact.Lastname = "";
 
+            app.Navigator.AddNewContact();
             app.Contacts.Create(newContact);
             app.Auth.Logout();
         }

@@ -14,14 +14,15 @@ namespace WebAddressbookTests
         public GroupHelper(IWebDriver driver)
             : base(driver)
         {
-        }
+        }return this;
 
-        public void Create(GroupData group)
+        public GroupHelper Create(GroupData group)
         {
             InitNewGroupCreation();
             FillGroupForm(group);
             SubmitGroupCreation();
             ReturnToGroupsPage();
+            return this;
         }
 
         public GroupHelper InitNewGroupCreation()
