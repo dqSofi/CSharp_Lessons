@@ -17,27 +17,31 @@ namespace WebAddressbookTests
         {
         }
 
-        public void AddNewContact()
+        public ContactHelper AddNewContact()
         {
             driver.FindElement(By.LinkText("add new")).Click();
+            return this;
         }
 
-        public void FillNewContactForm(ContactData contact)
+        public ContactHelper FillNewContactForm(ContactData contact)
         {
             driver.FindElement(By.Name("firstname")).Clear();
             driver.FindElement(By.Name("firstname")).SendKeys(contact.Firstname);
             driver.FindElement(By.Name("lastname")).Clear();
             driver.FindElement(By.Name("lastname")).SendKeys(contact.Lastname);
+            return this;
         }
 
-        public void SubmitContactCreation()
+        public ContactHelper SubmitContactCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
+            return this;
         }
 
-        public void ReturnToHomePage()
+        public ContactHelper ReturnToHomePage()
         {
             driver.FindElement(By.LinkText("home page")).Click();
+            return this;
         }
     }
 }
