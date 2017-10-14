@@ -16,11 +16,7 @@ namespace WebAddressbookTests
             newContact.Firstname = "Имя";
             newContact.Lastname = "Фамилия";
 
-            app.Contacts
-                .AddNewContact()
-                .FillNewContactForm(newContact)
-                .SubmitContactCreation()
-                .ReturnToHomePage();
+            app.Contacts.Create(newContact);
             app.Auth.Logout();
         }
 
@@ -28,14 +24,10 @@ namespace WebAddressbookTests
         public void EmptyNameContactCreationTest()
         {
             ContactData newContact = new ContactData();
-            newContact.Firstname = "Имя";
-            newContact.Lastname = "Фамилия";
+            newContact.Firstname = "";
+            newContact.Lastname = "";
 
-            app.Contacts
-                .AddNewContact()
-                .FillNewContactForm(newContact)
-                .SubmitContactCreation()
-                .ReturnToHomePage();
+            app.Contacts.Create(newContact);
             app.Auth.Logout();
         }
     }

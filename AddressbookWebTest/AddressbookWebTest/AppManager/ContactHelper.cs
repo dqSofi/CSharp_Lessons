@@ -17,6 +17,13 @@ namespace WebAddressbookTests
         {
         }
 
+        public void Create(ContactData newContact)
+        {
+            AddNewContact();
+            FillNewContactForm(newContact);
+            SubmitContactCreation();
+            ReturnToHomePage();
+        }
         public ContactHelper AddNewContact()
         {
             driver.FindElement(By.LinkText("add new")).Click();

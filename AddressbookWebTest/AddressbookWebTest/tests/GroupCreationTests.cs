@@ -17,11 +17,7 @@ namespace WebAddressbookTests
             group.Footer = "footer";
 
             app.Navigator.GoToGroupsPage();
-            app.Groups
-                .InitNewGroupCreation()
-                .FillGroupForm(group)
-                .SubmitGroupCreation()
-                .ReturnToGroupsPage();
+            app.Groups.Create(group);
             app.Auth.Logout();
         }
 
@@ -33,11 +29,7 @@ namespace WebAddressbookTests
             group.Footer = "";
 
             app.Navigator.GoToGroupsPage();
-            app.Groups
-                .InitNewGroupCreation()
-                .FillGroupForm(group)
-                .SubmitGroupCreation()
-                .ReturnToGroupsPage();
+            app.Groups.Create(group);
             app.Auth.Logout();
         }
     }

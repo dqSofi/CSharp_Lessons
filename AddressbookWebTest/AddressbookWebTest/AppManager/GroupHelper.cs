@@ -15,6 +15,15 @@ namespace WebAddressbookTests
             : base(driver)
         {
         }
+
+        public void Create(GroupData group)
+        {
+            InitNewGroupCreation();
+            FillGroupForm(group);
+            SubmitGroupCreation();
+            ReturnToGroupsPage();
+        }
+
         public GroupHelper InitNewGroupCreation()
         {
             //Создание новой группы
