@@ -26,6 +26,33 @@ namespace WebAddressbookTests
             return this;
         }
 
+        internal ContactHelper Remove()
+        {
+            SelectContact(18);
+            DeleteContact();
+            SubmitContactDeletion();
+            return this;
+        }
+
+        public ContactHelper SubmitContactDeletion()
+        {
+            driver.SwitchTo().Alert().Accept();
+            //Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+            return this;
+        }
+
+        public ContactHelper DeleteContact()
+        {
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            return this;
+        }
+
+        public ContactHelper SelectContact(int index)
+        {
+            driver.FindElement(By.XPath("//input[@type='checkbox']")).Click();
+            return this;
+        }
+
         public ContactHelper FillNewContactForm(ContactData contact)
         {
             driver.FindElement(By.Name("firstname")).Clear();
