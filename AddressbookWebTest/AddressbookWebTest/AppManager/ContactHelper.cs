@@ -17,6 +17,7 @@ namespace WebAddressbookTests
         {
         }
 
+        //Высокоуровневые
         public ContactHelper Create(ContactData newContact)
         {
             manager.Navigator.AddNewContact();
@@ -26,11 +27,55 @@ namespace WebAddressbookTests
             return this;
         }
 
-        internal ContactHelper Remove()
+        /*
+public ContactHelper Remove()
+{
+   SelectContact();
+   DeleteContact();
+   SubmitContactDeletion();
+   return this;
+}
+*/
+
+        public ContactHelper FillNewContactForm(ContactData contact)
         {
-            SelectContact(18);
-            DeleteContact();
-            SubmitContactDeletion();
+            driver.FindElement(By.Name("firstname")).Clear();
+            driver.FindElement(By.Name("firstname")).SendKeys(contact.Firstname);
+            driver.FindElement(By.Name("lastname")).Clear();
+            driver.FindElement(By.Name("lastname")).SendKeys(contact.Lastname);
+            return this;
+        }
+
+        //По 1 действию
+
+        public ContactHelper ClickDelete()
+        {
+            //driver.FindElement(By.XPath("(//input[@value='Delete'])"));
+            driver.FindElement(By.XPath("(//input[@name='update'])[3]")).Click();
+            return this;
+        }
+
+        public ContactHelper ClickUpdate()
+        {
+            driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
+
+        public ContactHelper ClickModify()
+        {
+            driver.FindElement(By.Name("modifiy")).Click();
+            return this;
+        }
+
+        public ContactHelper OpenDetails()
+        {
+            driver.FindElement(By.CssSelector("img[alt=\"Details\"]")).Click();
+            return this;
+        }
+
+        public ContactHelper Edit()
+        {
+            driver.FindElement(By.CssSelector("img[alt=\"Edit\"]")).Click();
             return this;
         }
 
@@ -47,18 +92,9 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper SelectContact(int index)
-        {
+        public ContactHelper SelectContact()
+        { 
             driver.FindElement(By.XPath("//input[@type='checkbox']")).Click();
-            return this;
-        }
-
-        public ContactHelper FillNewContactForm(ContactData contact)
-        {
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(contact.Firstname);
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(contact.Lastname);
             return this;
         }
 

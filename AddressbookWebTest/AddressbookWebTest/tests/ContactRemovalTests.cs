@@ -12,9 +12,29 @@ namespace WebAddressbookTests.tests
     public class ContactRemovalTests : TestBase
     {
         [Test]
-        public void ContactRemovalTest()
+        public void DeleteFromHomePage()
         {
-            app.Contacts.Remove();
+            //app.Contacts.Remove();
+            app.Contacts.SelectContact();
+            app.Contacts.DeleteContact();
+            app.Contacts.SubmitContactDeletion();
+        }
+
+        [Test]
+        public void DeleteThroughDetails()
+        {
+            //app.Contacts.Remove();
+            app.Contacts.OpenDetails();
+            app.Contacts.ClickModify();
+            app.Contacts.ClickDelete();
+        }
+
+        [Test]
+        public void DeleteThroughEdit()
+        {
+            //app.Contacts.Remove();
+            app.Contacts.Edit();
+            app.Contacts.ClickDelete();
         }
     }
 }
