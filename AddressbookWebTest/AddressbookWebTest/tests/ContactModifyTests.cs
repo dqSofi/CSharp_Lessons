@@ -17,10 +17,10 @@ namespace WebAddressbookTests.tests
             newContact.Firstname = "Новое Имя1";
             newContact.Lastname = "Новая Фамилия1";
 
-            app.Contacts.OpenDetails();
-            app.Contacts.ClickModify();
-            app.Contacts.FillNewContactForm(newContact);
-            app.Contacts.ClickUpdate();
+            app.Contacts
+                .OpenDetails()
+                .ClickModify()
+                .UpdateContact(newContact);
         }
 
         [Test]
@@ -30,9 +30,9 @@ namespace WebAddressbookTests.tests
             newContact.Firstname = "Новое Имя2";
             newContact.Lastname = "Новая Фамилия2";
 
-            app.Contacts.Edit();
-            app.Contacts.FillNewContactForm(newContact);
-            app.Contacts.ClickUpdate();
+            app.Contacts
+                .OpenEditForm()
+                .UpdateContact(newContact);
         }
     }
 }

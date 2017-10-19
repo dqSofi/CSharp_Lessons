@@ -15,26 +15,29 @@ namespace WebAddressbookTests.tests
         public void DeleteFromHomePage()
         {
             //app.Contacts.Remove();
-            app.Contacts.SelectContact();
-            app.Contacts.DeleteContact();
-            app.Contacts.SubmitContactDeletion();
+            app.Contacts
+                .SelectContact()
+                .DeleteContact()
+                .SubmitContactDeletion();
         }
 
         [Test]
         public void DeleteThroughDetails()
         {
             //app.Contacts.Remove();
-            app.Contacts.OpenDetails();
-            app.Contacts.ClickModify();
-            app.Contacts.ClickDelete();
+            app.Contacts
+                .OpenDetails()
+                .ClickModify()
+                .ClickDelete();
         }
 
         [Test]
         public void DeleteThroughEdit()
         {
             //app.Contacts.Remove();
-            app.Contacts.Edit();
-            app.Contacts.ClickDelete();
+            app.Contacts
+                .OpenEditForm()
+                .ClickDelete();
         }
     }
 }

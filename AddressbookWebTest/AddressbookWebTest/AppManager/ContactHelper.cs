@@ -17,6 +17,7 @@ namespace WebAddressbookTests
         {
         }
 
+
         //Высокоуровневые
         public ContactHelper Create(ContactData newContact)
         {
@@ -27,15 +28,12 @@ namespace WebAddressbookTests
             return this;
         }
 
-        /*
-public ContactHelper Remove()
-{
-   SelectContact();
-   DeleteContact();
-   SubmitContactDeletion();
-   return this;
-}
-*/
+        public ContactHelper UpdateContact(ContactData newContact)
+        {
+            FillNewContactForm(newContact);
+            ClickUpdate();
+            return this;
+        }
 
         public ContactHelper FillNewContactForm(ContactData contact)
         {
@@ -45,6 +43,7 @@ public ContactHelper Remove()
             driver.FindElement(By.Name("lastname")).SendKeys(contact.Lastname);
             return this;
         }
+
 
         //По 1 действию
 
@@ -73,7 +72,7 @@ public ContactHelper Remove()
             return this;
         }
 
-        public ContactHelper Edit()
+        public ContactHelper OpenEditForm()
         {
             driver.FindElement(By.CssSelector("img[alt=\"Edit\"]")).Click();
             return this;
