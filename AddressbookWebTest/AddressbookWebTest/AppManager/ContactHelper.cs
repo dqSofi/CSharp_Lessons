@@ -66,12 +66,14 @@ namespace WebAddressbookTests
 
         public ContactHelper OpenDetails()
         {
+            //сюда
             driver.FindElement(By.CssSelector("img[alt=\"Details\"]")).Click();
             return this;
         }
 
         public ContactHelper OpenEditForm()
         {
+            //и сюда
             driver.FindElement(By.CssSelector("img[alt=\"Edit\"]")).Click();
             return this;
         }
@@ -90,7 +92,8 @@ namespace WebAddressbookTests
         }
 
         public ContactHelper SelectContact()
-        { 
+        {
+            //и сюда
             driver.FindElement(By.XPath("//input[@type='checkbox']")).Click();
             return this;
         }

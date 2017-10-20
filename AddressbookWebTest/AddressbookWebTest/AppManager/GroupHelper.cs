@@ -28,7 +28,6 @@ namespace WebAddressbookTests
 
         public GroupHelper Modify (int index, GroupData newGroup)
         {
-
             manager.Navigator.GoToGroupsPage();
             SelectGroup(index);
             InitGroupModification();
@@ -52,7 +51,7 @@ namespace WebAddressbookTests
 
         public GroupHelper Remove(int index)
         {
-            manager.Navigator.GoToHomePage();
+            //manager.Navigator.GoToHomePage();
             manager.Navigator.GoToGroupsPage();
             SelectGroup(index);
             RemoveGroup();
@@ -85,8 +84,13 @@ namespace WebAddressbookTests
 
         public GroupHelper SelectGroup(int index)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
-            return this;
+            //добавить проверку на присутствие чекбокса
+            if (!IsElementPresent(By.XPath("(//input[@name='selected[]'])[" + index + "]")))
+            {
+                Create(new GroupData("CreatedToBeChosen!"));
+            } 
+                driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+                return this; 
         }
 
         public GroupHelper RemoveGroup()
