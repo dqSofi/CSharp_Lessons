@@ -63,13 +63,10 @@ namespace WebAddressbookTests
             //если для текущего потока внутри хранилища ничего не создано, то создать
             if (! app.IsValueCreated) 
             {
-                /* как в лекции
                 ApplicationManager NewInstance = new ApplicationManager();
                 NewInstance.Navigator.GoToHomePage();
                 app.Value = NewInstance;
-                */
-                app.Value = new ApplicationManager();
-
+                                
             }
             return app.Value;
         }
