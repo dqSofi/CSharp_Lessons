@@ -16,7 +16,10 @@ namespace WebAddressbookTests
         {
             app = ApplicationManager.GetInstance();
             //в начале теста обязательный переход на домашнюю страницу
-            //app.Navigator.GoToHomePage();
+            //так как неизвестно в каком порядке будут проходить тесты
+            //обязательный переход есть только при инициализации ApplicationManager
+            //при логаут/логин возврат на старую страницу (например groups)
+            app.Navigator.GoToHomePage();
         }
 
         

@@ -11,7 +11,7 @@ namespace WebAddressbookTests.tests
     public class ContactModifyTests : AuthTestBase
     {
         [Test]
-        public void ModifyByDetails()
+        public void ContactModifyByDetails()
         {
             ContactData newContact = new ContactData();
             newContact.Firstname = "Новое Имя1";
@@ -24,11 +24,14 @@ namespace WebAddressbookTests.tests
         }
 
         [Test]
-        public void ModifyByEdit()
+        public void ContactModifyByEdit()
         {
-            ContactData newContact = new ContactData();
-            newContact.Firstname = "Новое Имя2";
-            newContact.Lastname = "Новая Фамилия2";
+            //второй вариант инициализации
+            ContactData newContact = new ContactData
+            {
+                Firstname = "Новое Имя2",
+                Lastname = "Новая Фамилия2"
+            };
 
             app.Contacts
                 .OpenEditForm()

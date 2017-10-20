@@ -44,7 +44,7 @@ namespace WebAddressbookTests
 
 
         //По 1 действию
-
+        
         public ContactHelper ClickDelete()
         {
             //driver.FindElement(By.XPath("(//input[@value='Delete'])"));
@@ -67,6 +67,10 @@ namespace WebAddressbookTests
         public ContactHelper OpenDetails()
         {
             //сюда
+            if (!IsElementPresent(By.XPath("img[alt=\"Details\"]")))
+            {
+                Create(new ContactData());
+            }
             driver.FindElement(By.CssSelector("img[alt=\"Details\"]")).Click();
             return this;
         }
@@ -74,6 +78,10 @@ namespace WebAddressbookTests
         public ContactHelper OpenEditForm()
         {
             //и сюда
+            if (!IsElementPresent(By.XPath("img[alt=\"Edit\"]")))
+            {
+                Create(new ContactData());
+            }
             driver.FindElement(By.CssSelector("img[alt=\"Edit\"]")).Click();
             return this;
         }
@@ -94,6 +102,10 @@ namespace WebAddressbookTests
         public ContactHelper SelectContact()
         {
             //и сюда
+            if (!IsElementPresent(By.XPath("//input[@type='checkbox']")))
+            {
+                Create(new ContactData());
+            }
             driver.FindElement(By.XPath("//input[@type='checkbox']")).Click();
             return this;
         }

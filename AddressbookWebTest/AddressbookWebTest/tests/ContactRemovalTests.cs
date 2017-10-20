@@ -12,7 +12,7 @@ namespace WebAddressbookTests.tests
     public class ContactRemovalTests : AuthTestBase
     {
         [Test]
-        public void DeleteFromHomePage()
+        public void ContactDeleteFromHomePage()
         {
             //app.Contacts.Remove();
             app.Contacts
@@ -22,7 +22,7 @@ namespace WebAddressbookTests.tests
         }
 
         [Test]
-        public void DeleteThroughDetails()
+        public void ContactDeleteThroughDetails()
         {
             //app.Contacts.Remove();
             app.Contacts
@@ -32,7 +32,7 @@ namespace WebAddressbookTests.tests
         }
 
         [Test]
-        public void DeleteThroughEdit()
+        public void ContactDeleteThroughEdit()
         {
             //app.Contacts.Remove();
             app.Contacts
