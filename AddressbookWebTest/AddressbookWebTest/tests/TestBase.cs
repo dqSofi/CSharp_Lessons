@@ -12,11 +12,13 @@ namespace WebAddressbookTests
         protected ApplicationManager app;
 
         [SetUp]
-        public void SetupTest()
+        public void SetupApplicationManager()
         {
             app = ApplicationManager.GetInstance();
             //в начале теста обязательный переход на домашнюю страницу
-            app.Navigator.GoToHomePage(); 
+            //app.Navigator.GoToHomePage();
         }
+
+        
     }
 }
