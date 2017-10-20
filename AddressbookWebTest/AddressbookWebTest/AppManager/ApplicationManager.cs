@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -19,7 +20,8 @@ namespace WebAddressbookTests
         protected GroupHelper groupHelper;
         protected ContactHelper contactHelper;
 
-        private static ApplicationManager instance;
+        //устанавливает соответствие между текущим потоком и объектом типа апп менеджер
+        private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
         public IWebDriver Driver
         {
@@ -43,16 +45,8 @@ namespace WebAddressbookTests
             contactHelper = new ContactHelper(this);
         }
 
-        public static ApplicationManager GetInstance()
-        {
-            if (instance == null)
-            {
-                instance = new ApplicationManager();
-            }
-            return instance;
-        }
-
-        public void Stop()
+        //деструктор, всегда начинается с ~
+        ~ApplicationManager()
         {
             try
             {
@@ -63,6 +57,17 @@ namespace WebAddressbookTests
                 // Ignore errors if unable to close the browser
             }
         }
+
+        public static ApplicationManager GetInstance()
+        {
+            //если для текущего потока внутри хранилища ничего не создано, то создать
+            if (! app.IsValueCreated) 
+            {
+                app.Value = new ApplicationManager();
+            }
+            return app.Value;
+        }
+
         public LogInOutHelper Auth
         {
             get
