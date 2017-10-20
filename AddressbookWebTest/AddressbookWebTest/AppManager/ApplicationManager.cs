@@ -19,6 +19,8 @@ namespace WebAddressbookTests
         protected GroupHelper groupHelper;
         protected ContactHelper contactHelper;
 
+        private static ApplicationManager instance;
+
         public IWebDriver Driver
         {
             get
@@ -27,7 +29,7 @@ namespace WebAddressbookTests
             }
         }
 
-        public ApplicationManager()
+        private ApplicationManager()
         {
             FirefoxOptions options = new FirefoxOptions();
             options.BrowserExecutableLocation = @"C:\Program Files\Mozilla Firefox\firefox.exe";
@@ -39,6 +41,15 @@ namespace WebAddressbookTests
             navigator = new NavigationHelper(this,baseURL);
             groupHelper = new GroupHelper(this);
             contactHelper = new ContactHelper(this);
+        }
+
+        public static ApplicationManager GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new ApplicationManager();
+            }
+            return instance;
         }
 
         public void Stop()
