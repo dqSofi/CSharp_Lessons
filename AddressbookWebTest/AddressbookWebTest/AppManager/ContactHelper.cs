@@ -17,7 +17,6 @@ namespace WebAddressbookTests
         {
         }
 
-
         //Высокоуровневые
         public ContactHelper Create(ContactData newContact)
         {
@@ -44,7 +43,21 @@ namespace WebAddressbookTests
 
 
         //По 1 действию
-        
+
+        public bool IsContactExist()
+        {
+            return IsElementPresent(By.XPath("//tr[@name='entry']"));
+        }
+        //driver.FindElement(By.XPath("//input[@type='checkbox']")).Click();
+        //public bool IsGroupExist(int index) - поменяла на [1] вместо index
+        //без индекса - чтобы хотя по умолчанию даже единственная группа будет первой, 
+        //достаточно проверить наличие с индексом 1
+  /*      public bool IsGroupExist()
+        {
+            return IsElementPresent(By.XPath("(//input[@name='selected[]'])[1]"));
+        }*/
+
+
         public ContactHelper ClickDelete()
         {
             //driver.FindElement(By.XPath("(//input[@value='Delete'])"));
@@ -67,10 +80,10 @@ namespace WebAddressbookTests
         public ContactHelper OpenDetails()
         {
             //сюда
-            if (!IsElementPresent(By.XPath("img[alt=\"Details\"]")))
+            /*if (!IsElementPresent(By.XPath("img[alt=\"Details\"]")))
             {
                 Create(new ContactData());
-            }
+            }*/
             driver.FindElement(By.CssSelector("img[alt=\"Details\"]")).Click();
             return this;
         }
@@ -78,10 +91,10 @@ namespace WebAddressbookTests
         public ContactHelper OpenEditForm()
         {
             //и сюда
-            if (!IsElementPresent(By.XPath("img[alt=\"Edit\"]")))
+            /*if (!IsElementPresent(By.XPath("img[alt=\"Edit\"]")))
             {
                 Create(new ContactData());
-            }
+            }*/
             driver.FindElement(By.CssSelector("img[alt=\"Edit\"]")).Click();
             return this;
         }
@@ -102,10 +115,10 @@ namespace WebAddressbookTests
         public ContactHelper SelectContact()
         {
             //и сюда
-            if (!IsElementPresent(By.XPath("//input[@type='checkbox']")))
+            /*if (!IsElementPresent(By.XPath("//input[@type='checkbox']")))
             {
                 Create(new ContactData());
-            }
+            }*/
             driver.FindElement(By.XPath("//input[@type='checkbox']")).Click();
             return this;
         }

@@ -10,6 +10,15 @@ namespace WebAddressbookTests.tests
     [TestFixture]
     public class ContactModifyTests : AuthTestBase
     {
+        [SetUp]
+        public void CheckIfСontactExist()
+        {
+            if (!app.Contacts.IsContactExist())
+            {
+                app.Contacts.Create(new ContactData());
+            }
+        }
+
         [Test]
         public void ContactModifyByDetails()
         {
