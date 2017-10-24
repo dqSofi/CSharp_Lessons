@@ -26,7 +26,7 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public GroupHelper Modify (int index, GroupData newGroup)
+        public GroupHelper Modify(int index, GroupData newGroup)
         {
             manager.Navigator.GoToGroupsPage();
             SelectGroup(index);
@@ -58,7 +58,7 @@ namespace WebAddressbookTests
             ReturnToGroupsPage();
             return this;
         }
-    
+
         public GroupHelper InitNewGroupCreation()
         {
             //Создание новой группы
@@ -84,13 +84,9 @@ namespace WebAddressbookTests
 
         public GroupHelper SelectGroup(int index)
         {
-            //добавить проверку на присутствие чекбокса
-            if (!IsElementPresent(By.XPath("(//input[@name='selected[]'])[" + index + "]")))
-            {
-                Create(new GroupData("CreatedToBeChosen!"));
-            } 
-                driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
-                return this; 
+            //удалила отсюда проверку существоания
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            return this;
         }
 
         public GroupHelper RemoveGroup()
@@ -104,6 +100,15 @@ namespace WebAddressbookTests
             //Возврат на вкладку groups
             driver.FindElement(By.LinkText("group page")).Click();
             return this;
+        }
+
+        //public bool IsGroupExist(int index) - поменяла на [1] вместо index
+        //без индекса - чтобы хотя по умолчанию даже единственная группа будет первой, 
+        //достаточно проверить наличие с индексом 1
+        public bool IsGroupExist()
+        {
+            manager.Navigator.GoToGroupsPage();//проверка на существоание должна проходить на странице с группами
+            return IsElementPresent(By.XPath("(//input[@name='selected[]'])[1]"));
         }
     }
 }

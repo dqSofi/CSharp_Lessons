@@ -10,6 +10,15 @@ namespace WebAddressbookTests.tests
     [TestFixture]
     public class GroupModificationTests : AuthTestBase
     {
+        [SetUp]
+        public void CheckIfGroupExist()
+        {
+            if (!app.Groups.IsGroupExist())
+            {
+                app.Groups.Create(new GroupData("CreatedToBeChosen!"));
+            }
+        }
+
         [Test]
         public void GroupModificationTest()
         {
