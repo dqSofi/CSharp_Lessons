@@ -25,6 +25,7 @@ namespace WebAddressbookTests.tests
         {
             //app.Contacts.Remove();
             List<ContactData> oldContacts = app.Contacts.GetContactList();
+            ContactData toBeRemoved = oldContacts[0];
             app.Contacts
                 .SelectContact()
                 .DeleteContact()
@@ -35,6 +36,10 @@ namespace WebAddressbookTests.tests
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
+            foreach (ContactData contact in newContacts)
+            {
+                Assert.AreNotEqual(contact.ID, toBeRemoved.ID);
+            }
 
         }
 
@@ -43,6 +48,7 @@ namespace WebAddressbookTests.tests
         {
             //app.Contacts.Remove();
             List<ContactData> oldContacts = app.Contacts.GetContactList();
+            ContactData toBeRemoved = oldContacts[0];
             app.Contacts
                 .OpenDetails()
                 .ClickModify()
@@ -53,6 +59,10 @@ namespace WebAddressbookTests.tests
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
+            foreach (ContactData contact in newContacts)
+            {
+                Assert.AreNotEqual(contact.ID, toBeRemoved.ID);
+            }
         }
 
         [Test]
@@ -60,6 +70,7 @@ namespace WebAddressbookTests.tests
         {
             //app.Contacts.Remove();
             List<ContactData> oldContacts = app.Contacts.GetContactList();
+            ContactData toBeRemoved = oldContacts[0];
             app.Contacts
                 .OpenEditForm()
                 .ClickDelete();
@@ -69,6 +80,10 @@ namespace WebAddressbookTests.tests
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
+            foreach (ContactData contact in newContacts)
+            {
+                Assert.AreNotEqual(contact.ID, toBeRemoved.ID);
+            }
         }
     }
 }

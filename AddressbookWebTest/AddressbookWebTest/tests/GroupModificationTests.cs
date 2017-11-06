@@ -27,6 +27,7 @@ namespace WebAddressbookTests.tests
             newGroup.Footer = null;
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
+            GroupData oldGroup = oldGroups[0];
             app.Groups.Modify(0,newGroup);
             Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupCount());
             List<GroupData> newGroups = app.Groups.GetGroupList();
@@ -34,7 +35,13 @@ namespace WebAddressbookTests.tests
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
-
+            foreach (GroupData group in newGroups)
+            {
+                if (group.ID == oldGroup.ID)
+                {
+                    Assert.AreEqual(newGroup.Name,group.Name);
+                }
+            }
             //app.Auth.Logout();
         }
     }

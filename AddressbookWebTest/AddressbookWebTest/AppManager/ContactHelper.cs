@@ -45,6 +45,7 @@ namespace WebAddressbookTests
                     ContactData contact = new ContactData();
                     contact.Firstname = f[i].Text;
                     contact.Lastname = l[i].Text;
+                    contact.ID = l[i].FindElement(By.XPath("..//input")).GetAttribute("id");
                     contactCache.Add(contact);
                     //System.Console.WriteLine("FN " + contact.Firstname + " LN " + contact.Lastname);
                 }
