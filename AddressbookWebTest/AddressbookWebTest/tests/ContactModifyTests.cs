@@ -26,10 +26,17 @@ namespace WebAddressbookTests.tests
             newContact.Firstname = "Новое Имя1";
             newContact.Lastname = "Новая Фамилия1";
 
+            List<ContactData> oldContacts = app.Contacts.GetContactList();
             app.Contacts
                 .OpenDetails()
                 .ClickModify()
                 .UpdateContact(newContact);
+            List<ContactData> newContacts = app.Contacts.GetContactList();
+            oldContacts[0].Firstname=newContact.Firstname;
+            oldContacts[0].Lastname = newContact.Lastname;
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
         }
 
         [Test]
@@ -42,9 +49,16 @@ namespace WebAddressbookTests.tests
                 Lastname = "Новая Фамилия2"
             };
 
+            List<ContactData> oldContacts = app.Contacts.GetContactList();
             app.Contacts
                 .OpenEditForm()
                 .UpdateContact(newContact);
+            List<ContactData> newContacts = app.Contacts.GetContactList();
+            oldContacts[0].Firstname = newContact.Firstname;
+            oldContacts[0].Lastname = newContact.Lastname;
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
         }
     }
 }

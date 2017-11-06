@@ -24,29 +24,48 @@ namespace WebAddressbookTests.tests
         public void ContactDeleteFromHomePage()
         {
             //app.Contacts.Remove();
+            List<ContactData> oldContacts = app.Contacts.GetContactList();
             app.Contacts
                 .SelectContact()
                 .DeleteContact()
                 .SubmitContactDeletion();
+            List<ContactData> newContacts = app.Contacts.GetContactList();
+            oldContacts.RemoveAt(0);
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
+
         }
 
         [Test]
         public void ContactDeleteThroughDetails()
         {
             //app.Contacts.Remove();
+            List<ContactData> oldContacts = app.Contacts.GetContactList();
             app.Contacts
                 .OpenDetails()
                 .ClickModify()
                 .ClickDelete();
+            List<ContactData> newContacts = app.Contacts.GetContactList();
+            oldContacts.RemoveAt(0);
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
         }
 
         [Test]
         public void ContactDeleteThroughEdit()
         {
             //app.Contacts.Remove();
+            List<ContactData> oldContacts = app.Contacts.GetContactList();
             app.Contacts
                 .OpenEditForm()
                 .ClickDelete();
+                        List<ContactData> newContacts = app.Contacts.GetContactList();
+            oldContacts.RemoveAt(0);
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
         }
     }
 }
