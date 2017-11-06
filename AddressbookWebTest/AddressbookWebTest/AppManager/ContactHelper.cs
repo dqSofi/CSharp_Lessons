@@ -27,6 +27,26 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public List<ContactData> GetContactList()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+            manager.Navigator.GoToHomePage();
+            //подозрительно
+            ICollection<IWebElement> lastNames = driver.FindElements(By.XPath("//tr[@name='entry']/td[2]"));
+            ICollection<IWebElement> firstNames = driver.FindElements(By.XPath("//tr[@name='entry']/td[3]"));
+            List<IWebElement> l=lastNames.ToList();
+            List<IWebElement> f= firstNames.ToList();
+            for (int i=0;i < lastNames.Count; i++)
+            {
+                ContactData contact = new ContactData();
+                contact.Firstname = f[i].Text;
+                contact.Lastname = l[i].Text;
+                contacts.Add(contact);
+                //System.Console.WriteLine("FN " + contact.Firstname + " LN " + contact.Lastname);
+            }
+            return contacts;
+        }
+
         public ContactHelper UpdateContact(ContactData newContact)
         {
             FillNewContactForm(newContact);
