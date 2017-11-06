@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace WebAddressbookTests
@@ -17,7 +18,13 @@ namespace WebAddressbookTests
             group.Footer = "footer";
 
             app.Navigator.GoToGroupsPage();
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
             app.Groups.Create(group);
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
             //app.Auth.Logout();
         }
 
@@ -29,7 +36,32 @@ namespace WebAddressbookTests
             group.Footer = "";
 
             app.Navigator.GoToGroupsPage();
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
             app.Groups.Create(group);
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
+
+            //app.Auth.Logout();
+        }   
+        [Test]
+        public void BadNameGroupCreationTest()
+        {
+            GroupData group = new GroupData("d'a");
+            group.Header = "sdfsdf";
+            group.Footer = "sdfsf";
+
+            app.Navigator.GoToGroupsPage();
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+            app.Groups.Create(group);
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
+
             //app.Auth.Logout();
         }
     }
