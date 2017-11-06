@@ -57,6 +57,13 @@ namespace WebAddressbookTests
             return (Firstname == other.Firstname)&&(Lastname==other.Lastname);
         }
 
+        public override int GetHashCode() // для оптимизации, не совпали хэш коды - точно разные объекты,
+                                          //совпали - можно и в equals сравнить
+        {
+            //return 0; без оптимизации, всегда смотреть в equals
+            return Lastname.GetHashCode();
+        }
+
         public int CompareTo(ContactData other)
         {
             if (object.ReferenceEquals(other, null))

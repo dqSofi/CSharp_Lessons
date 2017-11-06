@@ -29,6 +29,7 @@ namespace WebAddressbookTests.tests
                 .SelectContact()
                 .DeleteContact()
                 .SubmitContactDeletion();
+            Assert.AreEqual(oldContacts.Count - 1, app.Contacts.GetContactCount());
             List<ContactData> newContacts = app.Contacts.GetContactList();
             oldContacts.RemoveAt(0);
             oldContacts.Sort();
@@ -46,6 +47,7 @@ namespace WebAddressbookTests.tests
                 .OpenDetails()
                 .ClickModify()
                 .ClickDelete();
+            Assert.AreEqual(oldContacts.Count - 1, app.Contacts.GetContactCount());
             List<ContactData> newContacts = app.Contacts.GetContactList();
             oldContacts.RemoveAt(0);
             oldContacts.Sort();
@@ -61,7 +63,8 @@ namespace WebAddressbookTests.tests
             app.Contacts
                 .OpenEditForm()
                 .ClickDelete();
-                        List<ContactData> newContacts = app.Contacts.GetContactList();
+            Assert.AreEqual(oldContacts.Count - 1, app.Contacts.GetContactCount());
+            List<ContactData> newContacts = app.Contacts.GetContactList();
             oldContacts.RemoveAt(0);
             oldContacts.Sort();
             newContacts.Sort();
