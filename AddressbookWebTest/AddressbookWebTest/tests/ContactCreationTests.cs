@@ -30,7 +30,7 @@ namespace WebAddressbookTests
         }
 
         [Test]
-        public void EmptyNameContactCreationTest()
+        public void ContactEmptyNameCreationTest()
         {
             ContactData newContact = new ContactData();
             newContact.Firstname = "";

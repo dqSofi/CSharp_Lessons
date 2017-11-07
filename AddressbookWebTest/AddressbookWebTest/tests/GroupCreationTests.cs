@@ -30,7 +30,7 @@ namespace WebAddressbookTests
         }
 
         [Test]
-        public void EmptyNameGroupCreationTest()
+        public void GroupEmptyNameCreationTest()
         {
             GroupData group = new GroupData("");
             group.Header = "";

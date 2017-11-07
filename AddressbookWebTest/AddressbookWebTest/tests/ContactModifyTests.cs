@@ -62,7 +62,7 @@ namespace WebAddressbookTests.tests
             List<ContactData> oldContacts = app.Contacts.GetContactList();
             ContactData oldContact = oldContacts[0];
             app.Contacts
-                .OpenEditForm()
+                .OpenEditForm(0)
                 .UpdateContact(newContact);
             Assert.AreEqual(oldContacts.Count, app.Contacts.GetContactCount());
             List<ContactData> newContacts = app.Contacts.GetContactList();
