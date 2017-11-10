@@ -50,7 +50,7 @@ namespace WebAddressbookTests.tests
             List<ContactData> oldContacts = app.Contacts.GetContactList();
             ContactData toBeRemoved = oldContacts[0];
             app.Contacts
-                .OpenDetails()
+                .OpenDetails(0)
                 .ClickModify()
                 .ClickDelete();
             Assert.AreEqual(oldContacts.Count - 1, app.Contacts.GetContactCount());

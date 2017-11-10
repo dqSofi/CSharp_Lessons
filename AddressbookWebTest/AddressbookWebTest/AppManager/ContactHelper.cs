@@ -37,10 +37,22 @@ namespace WebAddressbookTests
             };
         }
 
-        public ContactData GetContactInformationFromEditForm()
+        public ContactData GetContactInformationFromDetails(int index)
         {
             manager.Navigator.GoToHomePage();
-            OpenEditForm(0);
+            OpenDetails(0);
+            string cells = driver.FindElement(By.Id("content")).Text;
+
+            return new ContactData()
+            {
+                AllDetails = cells
+            };
+        }
+
+        public ContactData GetContactInformationFromEditForm(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            OpenEditForm(index);
 
             string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
             string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
@@ -85,19 +97,20 @@ namespace WebAddressbookTests
         {
             if (contactCache == null)
             {
+                //лекция 5,3 середина, сделать как в GetContactInformationFromTable
                 contactCache = new List<ContactData>();
                 manager.Navigator.GoToHomePage();
                 //подозрительно
                 ICollection<IWebElement> lastNames = driver.FindElements(By.XPath("//tr[@name='entry']/td[2]"));
                 ICollection<IWebElement> firstNames = driver.FindElements(By.XPath("//tr[@name='entry']/td[3]"));
-                List<IWebElement> l = lastNames.ToList();
-                List<IWebElement> f = firstNames.ToList();
+                List<IWebElement> lastNameList = lastNames.ToList();
+                List<IWebElement> firstNameList = firstNames.ToList();
                 for (int i = 0; i < lastNames.Count; i++)
                 {
                     ContactData contact = new ContactData();
-                    contact.Firstname = f[i].Text;
-                    contact.Lastname = l[i].Text;
-                    contact.ID = l[i].FindElement(By.XPath("..//input")).GetAttribute("id");
+                    contact.Firstname = firstNameList[i].Text;
+                    contact.Lastname = lastNameList[i].Text;
+                    contact.ID = lastNameList[i].FindElement(By.XPath("..//input")).GetAttribute("id");
                     contactCache.Add(contact);
                     //System.Console.WriteLine("FN " + contact.Firstname + " LN " + contact.Lastname);
                 }
@@ -164,14 +177,17 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper OpenDetails()
+        public ContactHelper OpenDetails(int index)
         {
             //сюда
             /*if (!IsElementPresent(By.XPath("img[alt=\"Details\"]")))
             {
                 Create(new ContactData());
             }*/
-            driver.FindElement(By.CssSelector("img[alt=\"Details\"]")).Click();
+            /*driver.FindElement(By.CssSelector("img[alt=\"Details\"]")).Click();*/
+            driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"))[6]
+                .FindElement(By.TagName("a")).Click();
             return this;
         }
 
