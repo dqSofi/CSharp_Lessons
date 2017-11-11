@@ -3,6 +3,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 using System.Text;
+using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Collections.Generic;
@@ -50,7 +51,13 @@ namespace WebAddressbookTests
                 .Deserialize(new StreamReader(@"groups.xml"));
         }
 
-        [Test, TestCaseSource("GroupDataFromXmlFile")]
+        public static IEnumerable<GroupData> GroupDataFromJsonFile()
+        {
+            return JsonConvert.DeserializeObject<List<GroupData>>(
+                File.ReadAllText(@"groups.json"));
+        }
+
+        [Test, TestCaseSource("GroupDataFromJsonFile")]
         public void GroupCreationTest(GroupData group)
         {
             /*GroupData group = new GroupData("BestGroup");
