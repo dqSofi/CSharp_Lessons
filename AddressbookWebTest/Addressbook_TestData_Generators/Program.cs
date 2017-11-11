@@ -15,13 +15,13 @@ namespace Addressbook_TestData_Generators
     {
         static void Main(string[] args)
         {
-            //string data = args[0];
-            int count = Convert.ToInt32(args[0]);
-            StreamWriter writer = new StreamWriter(args[1]);
-            string format = args[2];
+            string data = args[0];
+            int count = Convert.ToInt32(args[1]);
+            StreamWriter writer = new StreamWriter(args[2]);
+            string format = args[3];
 
             //-------------- GROUPS ------------
-            /*if(data == "groups")
+            if(data == "groups")
             {
                 List<GroupData> groups = new List<GroupData>();
 
@@ -51,7 +51,7 @@ namespace Addressbook_TestData_Generators
                 }
             }
             //-------------- CONTACTS ------------
-            else if (data == "contacts")*/
+            else if (data == "contacts")
             {
                 List<ContactData> contacts = new List<ContactData>();
 
@@ -81,10 +81,10 @@ namespace Addressbook_TestData_Generators
                     System.Console.Out.Write("Unrecognised format " + format);
                 }
             }
-            /*else
+            else
             {
                 System.Console.Out.Write("Unrecognised data type " + data);
-            }*/
+            }
             writer.Close();
         }
 
