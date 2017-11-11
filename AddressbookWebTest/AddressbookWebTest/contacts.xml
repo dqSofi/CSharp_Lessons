@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfContactData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ContactData>
+    <Firstname>D0*SX&lt;</Firstname>
+    <Lastname>E\</Lastname>
+    <Address>?7NS</Address>
+    <AllPhones />
+    <AllEmails />
+    <AllDetails>D0*SX&lt; E\
+?7NS
+
+H: 
+M: 
+W: 
+
+</AllDetails>
+  </ContactData>
+  <ContactData>
+    <Firstname>*V2</Firstname>
+    <Lastname>L0,BQRT</Lastname>
+    <Address>:S</Address>
+    <AllPhones />
+    <AllEmails />
+    <AllDetails>*V2 L0,BQRT
+:S
+
+H: 
+M: 
+W: 
+
+</AllDetails>
+  </ContactData>
+  <ContactData>
+    <Firstname>N:VVL(-]</Firstname>
+    <Lastname>:W</Lastname>
+    <Address>YE=2</Address>
+    <AllPhones />
+    <AllEmails />
+    <AllDetails>N:VVL(-] :W
+YE=2
+
+H: 
+M: 
+W: 
+
+</AllDetails>
+  </ContactData>
+</ArrayOfContactData>
