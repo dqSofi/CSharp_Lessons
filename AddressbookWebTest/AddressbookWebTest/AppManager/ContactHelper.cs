@@ -97,25 +97,21 @@ namespace WebAddressbookTests
         {
             if (contactCache == null)
             {
-                //лекция 5,3 середина, сделать как в GetContactInformationFromTable
                 contactCache = new List<ContactData>();
                 manager.Navigator.GoToHomePage();
-                //подозрительно
-                ICollection<IWebElement> lastNames = driver.FindElements(By.XPath("//tr[@name='entry']/td[2]"));
-                ICollection<IWebElement> firstNames = driver.FindElements(By.XPath("//tr[@name='entry']/td[3]"));
-                List<IWebElement> lastNameList = lastNames.ToList();
-                List<IWebElement> firstNameList = firstNames.ToList();
-                for (int i = 0; i < lastNames.Count; i++)
+                //новый
+                IList<IWebElement> lines = driver.FindElement(By.Id("maintable"))
+                    .FindElements(By.Name("entry"));
+               
+                foreach (IWebElement line in lines)
                 {
                     ContactData contact = new ContactData();
-                    contact.Firstname = firstNameList[i].Text;
-                    contact.Lastname = lastNameList[i].Text;
-                    contact.ID = lastNameList[i].FindElement(By.XPath("..//input")).GetAttribute("id");
+                    contact.Lastname = line.FindElement(By.XPath("./td[2]")).Text;
+                    contact.Firstname = line.FindElement(By.XPath("./td[3]")).Text;
+                    contact.ID = line.FindElement(By.XPath("./td[1]/input")).GetAttribute("id");
                     contactCache.Add(contact);
-                    //System.Console.WriteLine("FN " + contact.Firstname + " LN " + contact.Lastname);
                 }
             }
-            
             return new List<ContactData>(contactCache);
         }
 

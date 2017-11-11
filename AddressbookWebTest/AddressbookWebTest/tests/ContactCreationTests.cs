@@ -59,7 +59,7 @@ namespace WebAddressbookTests
                 File.ReadAllText(@"contacts.json"));
         }
 
-        [Test, TestCaseSource("ContactDataFromJsonFile")]
+        [Test, TestCaseSource("ContactDataFromCsvFile")]
         public void ContactCreationTest(ContactData newContact)
         {
             /*ContactData newContact = new ContactData();
