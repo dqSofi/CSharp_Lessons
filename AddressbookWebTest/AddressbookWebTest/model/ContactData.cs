@@ -93,9 +93,9 @@ namespace WebAddressbookTests
                     return NextLine(Firstname +" " + Lastname)
                         + NextLine(Address) 
                         + "\r\n"
-                        + "H: " + HomePhone + "\r\n"
-                        + "M: " + MobilePhone + "\r\n"
-                        + "W: " + WorkPhone + "\r\n"
+                        + LetterForPhone(HomePhone)
+                        + LetterForPhone(MobilePhone)
+                        + LetterForPhone(WorkPhone)
                         + "\r\n"
                         + AllEmails;
                 }
@@ -105,7 +105,29 @@ namespace WebAddressbookTests
                 allDetails = value;
             }
         }
-        
+
+        //добавляет правильную большую букву перед непустым номером телефона
+        private string LetterForPhone(string phone)
+        {
+            if (phone == null || phone == "")
+            {
+                return "";
+            }
+            else if (phone == HomePhone)
+            {
+                return "H: " + phone + "\r\n";
+            }
+            else if (phone == MobilePhone)
+            {
+                return "M: " + MobilePhone + "\r\n";
+            }
+            else if (phone == WorkPhone)
+            {
+                return "W: " + WorkPhone + "\r\n";
+            }
+            else return "";
+
+        }
 
         private string NextLine(string stroka)
         {
