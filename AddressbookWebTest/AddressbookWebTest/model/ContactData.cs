@@ -109,7 +109,7 @@ namespace WebAddressbookTests
 
         private string NextLine(string stroka)
         {
-            if (stroka == null)
+            if (stroka == null || stroka == "")
             {
                 return "";
             }
@@ -119,7 +119,7 @@ namespace WebAddressbookTests
 
         private string CleanUp(string phone)
         {
-            if (phone == null)
+            if (phone == null||phone == "")
             {
                 return "";
             }
