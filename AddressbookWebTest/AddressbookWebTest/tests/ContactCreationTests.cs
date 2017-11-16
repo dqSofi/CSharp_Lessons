@@ -97,6 +97,20 @@ namespace WebAddressbookTests
             //app.Auth.Logout();
         }*/
 
+        [Test]
+        public void ContactTestDBConnectivity()
+        {
+            DateTime start = DateTime.Now;
+            List<ContactData> ftomUI = app.Contacts.GetContactList();
+            DateTime end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+
+            start = DateTime.Now;
+            List<ContactData> ftomDB = ContactData.GetAllFromDB();
+            end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+        }
+
     }
 }
 
