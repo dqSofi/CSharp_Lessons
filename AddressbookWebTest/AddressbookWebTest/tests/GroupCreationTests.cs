@@ -3,6 +3,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 using System.Text;
+using System.Linq;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -94,6 +95,19 @@ namespace WebAddressbookTests
             Assert.AreEqual(oldGroups, newGroups);
 
             //app.Auth.Logout();
+        }
+        [Test]
+        public void TestDBConnectivity()
+        {
+            DateTime start = DateTime.Now;
+            List<GroupData> ftomUI = app.Groups.GetGroupList();
+            DateTime end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+
+            start = DateTime.Now;
+            List<GroupData> ftomDB = GroupData.GetAllFromDB();
+            end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
         }
     }
 }
