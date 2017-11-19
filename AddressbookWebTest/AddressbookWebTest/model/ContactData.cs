@@ -29,6 +29,7 @@ namespace WebAddressbookTests
         public string allPhones;
         public string allEmails;
         public string allDetails;
+        public string fio;
 
         [Column(Name = "id"),PrimaryKey,Identity]
         public string ID { get; set; }
@@ -87,6 +88,12 @@ namespace WebAddressbookTests
                 {
                     return allEmails;
                 }
+                else if((HomePhone!=null && HomePhone!="")||
+                    (WorkPhone != null && WorkPhone != "" )||
+                    (MobilePhone != null && MobilePhone != "") )
+                {
+                    return "\r\n" + (NextLine(Email) + NextLine(Email2) + NextLine(Email3)).Trim();
+                }
                 else
                 {
                     return (NextLine(Email) + NextLine(Email2) + NextLine(Email3)).Trim();
@@ -108,13 +115,12 @@ namespace WebAddressbookTests
                 }
                 else
                 {
-                    return (NextLine(Firstname + " " + Lastname)
+                    return (NextLine(Fio) // (Firstname + " " + Lastname)
                         + NextLine(Address)
                         + "\r\n"
                         + LetterForPhone(HomePhone)
                         + LetterForPhone(MobilePhone)
                         + LetterForPhone(WorkPhone)
-                        + "\r\n"
                         + AllEmails).Trim();
                 }
             }
@@ -124,6 +130,37 @@ namespace WebAddressbookTests
             }
         }
 
+        public string Fio
+        {
+            get
+            {
+                if (fio != null)
+                {
+                    return fio;
+                }
+                else
+                {
+                    fio = fio + Firstname;
+                    if (Middlename!="" && Middlename != null)
+                    {
+                        fio = fio + " " + Middlename;
+                    };
+                    if (Lastname != "" && Lastname != null)
+                    {
+                        fio = fio + " " + Lastname;
+                    };
+                    return fio;
+                }
+            }
+            set
+            {
+                fio = value;
+            }
+        }
+        
+        
+
+        
         //добавляет правильную большую букву перед непустым номером телефона
         private string LetterForPhone(string phone)
         {
