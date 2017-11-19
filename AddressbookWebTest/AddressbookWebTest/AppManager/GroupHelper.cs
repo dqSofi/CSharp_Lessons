@@ -32,6 +32,7 @@ namespace WebAddressbookTests
             
         }
 
+
         private List<GroupData> groupCache = null;
 
         public List<GroupData> GetGroupList()
@@ -103,6 +104,16 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public GroupHelper Remove(GroupData group)
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(group.ID);
+            RemoveGroup();
+            ReturnToGroupsPage();
+
+            return this;
+        }
+
         public GroupHelper InitNewGroupCreation()
         {
             //Создание новой группы
@@ -131,6 +142,14 @@ namespace WebAddressbookTests
         {
             //удалила отсюда проверку существоания
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + 1 + "]")).Click();
+            groupCache = null;
+            return this;
+        }
+
+        public GroupHelper SelectGroup(String id)
+        {
+            //удалила отсюда проверку существоания
+            driver.FindElement(By.XPath("(//input[@name='selected[]' and @value='" + id + "'])")).Click();
             groupCache = null;
             return this;
         }
