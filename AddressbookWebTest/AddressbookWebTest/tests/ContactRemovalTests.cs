@@ -9,7 +9,7 @@ namespace WebAddressbookTests.tests
 {
 
     [TestFixture]
-    public class ContactRemovalTests : AuthTestBase
+    public class ContactRemovalTests : ContactTestBase
     {
         [SetUp]
         public void CheckIfСontactExist()
