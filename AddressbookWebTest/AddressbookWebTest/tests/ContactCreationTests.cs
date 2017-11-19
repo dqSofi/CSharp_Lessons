@@ -66,11 +66,11 @@ namespace WebAddressbookTests
             newContact.Firstname = "Имя";
             newContact.Lastname = "Фамилия";*/
 
-            List<ContactData> oldContacts = app.Contacts.GetContactList();
+            List<ContactData> oldContacts = ContactData.GetAllFromDB();
             app.Navigator.AddNewContact();
             app.Contacts.Create(newContact);
             Assert.AreEqual(oldContacts.Count + 1,app.Contacts.GetContactCount());
-            List<ContactData> newContacts = app.Contacts.GetContactList();
+            List<ContactData> newContacts = ContactData.GetAllFromDB();
             oldContacts.Add(newContact);
             oldContacts.Sort();
             newContacts.Sort();
