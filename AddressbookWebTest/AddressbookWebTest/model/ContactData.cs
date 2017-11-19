@@ -106,14 +106,14 @@ namespace WebAddressbookTests
                 }
                 else
                 {
-                    return NextLine(Firstname +" " + Lastname)
-                        + NextLine(Address) 
+                    return (NextLine(Firstname + " " + Lastname)
+                        + NextLine(Address)
                         + "\r\n"
                         + LetterForPhone(HomePhone)
                         + LetterForPhone(MobilePhone)
                         + LetterForPhone(WorkPhone)
                         + "\r\n"
-                        + AllEmails;
+                        + AllEmails).Trim();
                 }
             }
             set
