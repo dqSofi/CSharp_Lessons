@@ -97,7 +97,7 @@ namespace WebAddressbookTests
             //app.Auth.Logout();
         }*/
 
-        [Test]
+        /*[Test]
         public void ContactTestDBConnectivity()
         {
             DateTime start = DateTime.Now;
@@ -109,7 +109,7 @@ namespace WebAddressbookTests
             List<ContactData> ftomDB = ContactData.GetAllFromDB();
             end = DateTime.Now;
             System.Console.Out.WriteLine(end.Subtract(start));
-        }
+        }*/
 
     }
 }

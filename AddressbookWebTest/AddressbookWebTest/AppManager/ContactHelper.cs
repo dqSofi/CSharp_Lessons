@@ -186,6 +186,27 @@ namespace WebAddressbookTests
                 .FindElement(By.TagName("a")).Click();
             return this;
         }
+        
+        public ContactHelper OpenDetails(string id)
+        {
+            //сюда
+            /*if (!IsElementPresent(By.XPath("img[alt=\"Details\"]")))
+            {
+                Create(new ContactData());
+            }*/
+            /*driver.FindElement(By.CssSelector("img[alt=\"Details\"]")).Click();*/
+            //driver.FindElement(By.XPath("(//input[@name='selected[]' and @value='" + id + "'])")).Click();
+
+            /*contact.Lastname = line.FindElement(By.XPath("./td[2]")).Text;
+            contact.Firstname = line.FindElement(By.XPath("./td[3]")).Text;*
+            contact.ID = line.FindElement(By.XPath("./td[1]/input")).GetAttribute("id");*/
+
+            driver.FindElement(By.XPath("(//input[@name='selected[]' and @id='" + id + "']/../..)"))
+                .FindElements(By.TagName("td"))[6]
+                .FindElement(By.TagName("a")).Click();
+            
+            return this;
+        }
 
         //public ContactHelper OpenEditForm()
         public ContactHelper OpenEditForm(int index)
@@ -197,6 +218,21 @@ namespace WebAddressbookTests
             }*/
             //driver.FindElement(By.CssSelector("img[alt=\"Edit\"]")).Click();
             driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"))[7]
+                .FindElement(By.TagName("a")).Click();
+            return this;
+
+        }
+
+        public ContactHelper OpenEditForm(string id)
+        {
+            //и сюда
+            /*if (!IsElementPresent(By.XPath("img[alt=\"Edit\"]")))
+            {
+                Create(new ContactData());
+            }*/
+            //driver.FindElement(By.CssSelector("img[alt=\"Edit\"]")).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]' and @id='" + id + "']/../..)"))
                 .FindElements(By.TagName("td"))[7]
                 .FindElement(By.TagName("a")).Click();
             return this;
@@ -226,6 +262,12 @@ namespace WebAddressbookTests
                 Create(new ContactData());
             }*/
             driver.FindElement(By.XPath("//input[@type='checkbox']")).Click();
+            return this;
+        }
+
+        public ContactHelper SelectContact(string id)
+        {
+            driver.FindElement(By.XPath("//input[@type='checkbox' and @id ='" + id + "']")).Click();
             return this;
         }
 
