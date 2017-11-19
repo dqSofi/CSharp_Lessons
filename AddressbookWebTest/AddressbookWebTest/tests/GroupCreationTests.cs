@@ -66,10 +66,10 @@ namespace WebAddressbookTests
             group.Footer = "footer";
             */
             app.Navigator.GoToGroupsPage();
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
+            List<GroupData> oldGroups = GroupData.GetAllFromDB();
             app.Groups.Create(group);
             Assert.AreEqual(oldGroups.Count+1, app.Groups.GetGroupCount());
-            List<GroupData> newGroups = app.Groups.GetGroupList();
+            List<GroupData> newGroups = GroupData.GetAllFromDB();
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();
@@ -85,10 +85,10 @@ namespace WebAddressbookTests
             group.Footer = "sdfsf";
 
             app.Navigator.GoToGroupsPage();
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
+            List<GroupData> oldGroups = GroupData.GetAllFromDB();
             app.Groups.Create(group);
             Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
-            List<GroupData> newGroups = app.Groups.GetGroupList();
+            List<GroupData> newGroups = GroupData.GetAllFromDB();
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();
@@ -96,7 +96,7 @@ namespace WebAddressbookTests
 
             //app.Auth.Logout();
         }
-        [Test]
+        /*[Test]
         public void TestDBConnectivity()
         {
             DateTime start = DateTime.Now;
@@ -108,6 +108,6 @@ namespace WebAddressbookTests
             List<GroupData> ftomDB = GroupData.GetAllFromDB();
             end = DateTime.Now;
             System.Console.Out.WriteLine(end.Subtract(start));
-        }
+        }*/
     }
 }
