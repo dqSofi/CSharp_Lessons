@@ -26,11 +26,11 @@ namespace WebAddressbookTests.tests
             newGroup.Header = null;
             newGroup.Footer = null;
 
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
+            List<GroupData> oldGroups = GroupData.GetAllFromDB();
             GroupData oldGroup = oldGroups[0];
-            app.Groups.Modify(0,newGroup);
+            app.Groups.Modify(oldGroup, newGroup);
             Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupCount());
-            List<GroupData> newGroups = app.Groups.GetGroupList();
+            List<GroupData> newGroups = GroupData.GetAllFromDB();
             oldGroups[0].Name = newGroup.Name;
             oldGroups.Sort();
             newGroups.Sort();
