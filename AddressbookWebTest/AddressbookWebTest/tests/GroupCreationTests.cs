@@ -109,5 +109,13 @@ namespace WebAddressbookTests
             end = DateTime.Now;
             System.Console.Out.WriteLine(end.Subtract(start));
         }*/
+        [Test]
+        public void TestDBConnectivity()
+        {
+            foreach (ContactData contact in GroupData.GetAllFromDB()[0].GetContactInGroup())
+            {
+                System.Console.Out.WriteLine(contact);
+            }
+        }
     }
 }
