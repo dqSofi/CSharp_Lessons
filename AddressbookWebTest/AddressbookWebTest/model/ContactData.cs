@@ -253,8 +253,8 @@ namespace WebAddressbookTests
         {
             using (AddressbookDB db = new AddressbookDB())
             {
-                return (from c in db.Contacts
-                        where c.Deprecated == "0000-00-00 00:00:00"
+                return (from c in db.Contacts.Where(x => x.Deprecated == "0000-00-00 00:00:00")
+                        //where c.Deprecated == "0000-00-00 00:00:00"
                         select c).ToList();
             }
         }
