@@ -13,8 +13,7 @@ namespace WebAddressbookTests
     public class ApplicationManager
     {
         protected IWebDriver driver;
-        protected string baseURL;        
-
+        protected string baseURL;     
         protected LogInOutHelper loginout;
         protected NavigationHelper navigator;
         protected GroupHelper groupHelper;

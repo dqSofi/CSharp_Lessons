@@ -116,19 +116,28 @@ namespace WebAddressbookTests
                 }
                 else
                 {
-                    return (NextLine(Fio) // (Firstname + " " + Lastname)
-                        + NextLine(Address)
-                        + "\r\n"
-                        + LetterForPhone(HomePhone)
-                        + LetterForPhone(MobilePhone)
-                        + LetterForPhone(WorkPhone)
-                        + AllEmails).Trim();
+                    return (AddIfNotEmpty(NextLine(Fio)) // (Firstname + " " + Lastname)
+                        + AddIfNotEmpty(NextLine(Address)+"\r\n") 
+                        + AddIfNotEmpty(LetterForPhone(HomePhone))
+                        + AddIfNotEmpty(LetterForPhone(MobilePhone))
+                        + AddIfNotEmpty(LetterForPhone(WorkPhone))
+                        + AddIfNotEmpty(AllEmails)).Trim();
                 }
             }
             set
             {
                 allDetails = value;
             }
+        }
+
+        //проверка на непустую строку - только в этом случае добавляется к allDetails
+        public string AddIfNotEmpty(string stroka)
+        {
+            if (stroka == null || stroka == "")
+            {
+                return "";
+            }
+            return stroka;
         }
 
         public string Fio

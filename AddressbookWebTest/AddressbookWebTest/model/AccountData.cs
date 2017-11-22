@@ -29,8 +29,14 @@ namespace WebAddressbookTests
         }
         public String Password
         {
-            get => password;
-            set => password = value;
+            get
+            {
+                return password;
+            }
+            set
+            {
+                password = value;
+            }
         }
     }
 }
