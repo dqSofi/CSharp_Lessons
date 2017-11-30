@@ -167,10 +167,7 @@ namespace WebAddressbookTests
                 fio = value;
             }
         }
-        
-        
 
-        
         //добавляет правильную большую букву перед непустым номером телефона
         private string LetterForPhone(string phone)
         {
@@ -213,7 +210,7 @@ namespace WebAddressbookTests
             return Regex.Replace(phone, "[ -()]", "")+"\r\n";
             //phone.Replace("-", "").Replace(" ", "").Replace("(", "").Replace(")", "")+"\r\n";
         }
-       
+
         public bool Equals(ContactData other)
         {
             if (Object.ReferenceEquals(other, null))//это стандартная проверка
@@ -224,7 +221,7 @@ namespace WebAddressbookTests
             {
                 return true;
             }
-            return (Firstname == other.Firstname)&&(Lastname==other.Lastname);
+            return (ID == other.ID); //было (Firstname == other.Firstname)&&(Lastname==other.Lastname);
         }
 
         public override int GetHashCode() // для оптимизации, не совпали хэш коды - точно разные объекты,
@@ -243,13 +240,18 @@ namespace WebAddressbookTests
             {
                 return 1;
             }
-            if (Lastname.CompareTo(other.Lastname)==0)
+            //было 
+            /*if (Lastname.CompareTo(other.Lastname)==0)
             {
                 return Firstname.CompareTo(other.Firstname);
             }
             else
             {
                 return Lastname.CompareTo(other.Lastname);
+            }*/
+            else
+            {
+                return ID.CompareTo(other.ID);
             }
         }
 

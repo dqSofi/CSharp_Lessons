@@ -9,6 +9,38 @@ namespace WebAddressbookTests
 {
     class RemovingContactFromGroupTests : AuthTestBase
     {
+        [SetUp]
+        public void CheckIfGroupExist()
+        {
+            if (!app.Groups.IsGroupExist())
+            {
+                app.Groups.Create(new GroupData("CreatedToBeChosen!"));
+            }
+        }
+
+        [SetUp]
+        public void CheckIfThereIsAContactInAGroup()
+        {
+            GroupData group = GroupData.GetAllFromDB()[0];
+            List<ContactData> areInGroup = group.GetContactInGroup();
+            if (areInGroup.Count()==0)
+            {
+               List<ContactData> areNotInGroup = ContactData.GetAllFromDB().Except(areInGroup).ToList();
+               if (areNotInGroup.Count() == 0)
+                {
+                    app.Contacts.Create(new ContactData()
+                    {
+                        Firstname = "I will be",
+                        Lastname = "In this group!"
+                    });
+
+                }
+                ContactData contact = ContactData.GetAllFromDB().Except(areInGroup).First();
+                app.Contacts.AddContactToGroup(contact, group);
+            }
+
+        }
+
         [Test]
         public void RemovingContactFromGroupTest()
         {
